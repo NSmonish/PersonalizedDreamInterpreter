@@ -2,9 +2,8 @@ import { useState } from 'react';
 import AppleIcon from './assets/AppleIcon.jpg';
 import GoogleIcon from './assets/GoogleIcon.jpg';
 import './SignUp.css';
-import Login from './Login';
 
-function SignUp() {
+function Login() {
   return (
     <>
       <div className="app-container">
@@ -13,13 +12,8 @@ function SignUp() {
             <img />
           </div>
           <div className="right-box">
-            <h2>WELCOME!</h2>
+            <h2>WELCOME BACK!</h2>
             <form>
-              <div className="input-group">
-                <label htmlFor="username">NAME</label>
-                <br />
-                <input type="text" id="username" name="username" />
-              </div>
               <div className="input-group">
                 <label htmlFor="email">EMAIL</label>
                 <br />
@@ -38,8 +32,8 @@ function SignUp() {
               <img src={GoogleIcon}/>
             </div>
             <div className="tologin">
-              <p>Already Registered?</p>
-              <a href={Login}>LOGIN</a>
+              <p>New User?</p>
+              <a href="#">SIGN UP</a>
             </div>
           </div>
         </div>
@@ -48,4 +42,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default Login;
