@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "http://localhost:5001/api/auth";
 
 export const login = async (credentials) => {
   const res = await fetch(`${API_URL}/login`, {
@@ -10,7 +10,7 @@ export const login = async (credentials) => {
 };
 
 export const signup = async (userData) => {
-  console.log("Sending userData to server:", userData); // 🔍 Debug here
+  console.log("Sending userData to server:", userData);
   const res = await fetch(`${API_URL}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
