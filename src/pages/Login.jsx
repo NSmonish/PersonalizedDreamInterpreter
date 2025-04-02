@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
-const Login = () => {
+const Login = ({ setUserName }) => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -23,10 +23,12 @@ const Login = () => {
     if (data.token) {
       localStorage.setItem("token", data.token);
       const decoded = jwtDecode(data.token);
+      localStorage.setItem("userName", decoded.name || "User");
+      setUserName(decoded.name || "User");
       if (decoded.role === "admin") {
         navigate("/admin");
       } else {
-        navigate("/dashboard");
+        navigate("/");
       }
     } else {
       alert("Login failed!");
