@@ -2,25 +2,19 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 
-// GET analysis page
-router.get("/", (req, res) => {
-  res.render("analysis", { emotion: null });
-});
-
-// POST form submission
-router.post("/", async (req, res) => {
+router.post("/api", async (req, res) => {
   const dreamText = req.body.dreamText;
 
   try {
-    const response = await axios.post("http://localhost:5001/predict-emotion", {
+    const response = await axios.post("http://localhost:5002/predict-emotion", {
       text: dreamText,
     });
 
     const emotion = response.data.emotion;
-    res.render("analysis", { emotion });
+    res.json({ emotion }); // ✅ Return JSON instead of rendering a page
   } catch (error) {
     console.error("Emotion prediction failed:", error.message);
-    res.render("analysis", { emotion: "Error detecting emotion" });
+    res.status(500).json({ emotion: "Error detecting emotion" });
   }
 });
 

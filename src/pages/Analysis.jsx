@@ -8,8 +8,15 @@ const Analysis = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Clear the previous emotion before making a new prediction (optional step)
+    setEmotion(null);
+
     try {
-      const response = await axios.post("/analysis", { dreamText });
+      const response = await axios.post("http://localhost:5001/analysis/api", {
+        dreamText,
+      });
+
+      // Update the emotion state with the new response
       setEmotion(response.data.emotion);
     } catch (error) {
       console.error("Error predicting emotion:", error);
