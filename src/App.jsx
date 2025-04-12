@@ -15,6 +15,7 @@ import Welcome from "./pages/Welcome";
 import EnterDream from "./pages/EnterDream";
 import Calendar from "./pages/Calendar";
 import SubmitAnalysis from "./pages/SubmitAnalysis";
+import Analysis from "./pages/analysis";
 
 const Home = () => {
   return (
@@ -63,6 +64,14 @@ const App = () => {
           element={
             <ProtectedRoute allowedRoles={["user", "admin"]}>
               <Dreams userName={userName} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analysis"
+          element={
+            <ProtectedRoute allowedRoles={["user", "admin"]}>
+              <Analysis />
             </ProtectedRoute>
           }
         />

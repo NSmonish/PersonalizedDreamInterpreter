@@ -16,6 +16,8 @@ app.get("/", (req, res) => {
 // Import routes
 const authRoutes = require("./routes/authRoutes");
 const dreamRoutes = require("./routes/dreamRoutes");
+const analysisRoutes = require("./routes/analysisRoutes");
+app.use("/analysis", analysisRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/dreams", dreamRoutes);
 // Connect to MongoDB
