@@ -27,8 +27,15 @@ const SignUp = ({ setUserName }) => {
     if (data.token) {
       localStorage.setItem("token", data.token);
       const decoded = jwtDecode(data.token);
+
+      // ✅ Set user info
       localStorage.setItem("userName", userData.name);
+      localStorage.setItem("email", userData.email);
+      localStorage.setItem("password", userData.password); // optional: just for demo
+
+      // ✅ Update state
       setUserName(userData.name);
+
       if (decoded.role === "admin") {
         navigate("/admin");
       } else {

@@ -16,6 +16,7 @@ import EnterDream from "./pages/EnterDream";
 import Calendar from "./pages/Calendar";
 import SubmitAnalysis from "./pages/SubmitAnalysis";
 import Analysis from "./pages/analysis";
+import Profile from "./pages/Profile";
 
 const Home = () => {
   return (
@@ -41,17 +42,26 @@ const App = () => {
   const [userName, setUserName] = useState(
     localStorage.getItem("userName") || "Guest"
   );
+  const [email, setEmail] = useState(
+    localStorage.getItem("email") || "Not Provided"
+  );
+  const [password, setPassword] = useState(
+    localStorage.getItem("password") || "******"
+  );
 
   useEffect(() => {
-    const updateUserName = () => {
+    const updateUserDetails = () => {
       setUserName(localStorage.getItem("userName") || "Guest");
+      setEmail(localStorage.getItem("email") || "Not Provided");
+      setPassword(localStorage.getItem("password") || "******");
     };
-    window.addEventListener("storage", updateUserName);
+    window.addEventListener("storage", updateUserDetails);
 
     return () => {
-      window.removeEventListener("storage", updateUserName);
+      window.removeEventListener("storage", updateUserDetails);
     };
   }, []);
+
   return (
     <>
       <Navbar />
@@ -75,6 +85,15 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute allowedRoles={["user", "admin"]}>
+              <Profile userName={userName} email={email} password={password} />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/admin"
           element={

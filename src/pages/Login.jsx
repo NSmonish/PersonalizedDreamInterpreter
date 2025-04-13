@@ -23,8 +23,20 @@ const Login = ({ setUserName }) => {
     if (data.token) {
       localStorage.setItem("token", data.token);
       const decoded = jwtDecode(data.token);
-      localStorage.setItem("userName", decoded.name || "User");
-      setUserName(decoded.name || "User");
+
+      // Set basic user info from token or credentials
+      localStorage.setItem(
+        "userName",
+        decoded.name || credentials.name || "User"
+      );
+      localStorage.setItem(
+        "email",
+        decoded.email || credentials.email || "Not Provided"
+      );
+      localStorage.setItem("password", credentials.password); // only for demo, remove in production!
+
+      setUserName(decoded.name || credentials.name || "User");
+
       if (decoded.role === "admin") {
         navigate("/admin");
       } else {
@@ -34,6 +46,7 @@ const Login = ({ setUserName }) => {
       alert("Login failed!");
     }
   };
+
   return (
     <>
       <div className="app-container">
