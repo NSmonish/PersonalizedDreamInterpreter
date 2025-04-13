@@ -12,13 +12,13 @@ model = AutoModelForSequenceClassification.from_pretrained(model_path, local_fil
 
 # Emotion labels
 id2label = {
-    0: "joy",
-    1: "anger",
-    2: "sadness",
-    3: "love",
-    4: "fear",
-    5: "surprise",
-    6: "neutral"
+    0: "surprise",
+    1: "sadness",
+    2: "happy",
+    3: "scared",
+    4: "disgust",
+    5: "neutral",
+    6: "anger"
 }
 model.config.id2label = id2label
 model.config.label2id = {v: k for k, v in id2label.items()}
